@@ -5,6 +5,7 @@ import (
         "net/http"
         "io/ioutil"
         "errors"
+        "os"
 )
 
 type Page struct {
@@ -91,5 +92,5 @@ func main(){
         http.HandleFunc("/view/", makeHandler(viewHandler))
         http.HandleFunc("/edit/", makeHandler(editHandler))
         http.HandleFunc("/save/", makeHandler(saveHandler))
-        http.ListenAndServe(":8080", nil)
+        http.ListenAndServe(":" + os.Getenv("PORT"), nil)
 }
